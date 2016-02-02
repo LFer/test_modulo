@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="test_module_form_view">
+            <field name="name">test.module.form</field>
+            <field name="model">test.module</field>
+            <field name="arch" type="xml">
+                <form string="Testing">
+                    <sheet>
+                        <button name="test" type="object" string="Test"/>
+                        <group>
+                        <!--
+                            <field name="alumno"/>
+                            <field name="nacimiento"/>
+                            <field name="comentarios"/>
+                        -->
+                        </group>
+                        <group string="Testing">
+                        <!--field name="cfdi_cbb" widget='image' nolabel='1'/-->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- override the automatically generated list view for courses -->
+        <record model="ir.ui.view" id="test_module_tree_view">
+            <field name="name">qr.tree</field>
+            <field name="model">test.module</field>
+            <field name="arch" type="xml">
+                <tree string="QR Code Tree">
+                    <field name="cfdi_cbb"/>
+                    <field name="img"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+        <record model="ir.actions.act_window" id="test_module_action">
+            <field name="name">Testing</field>
+            <field name="res_model">test.module</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_test_module_menu" name="Testing"/>
+
+
+        <menuitem id="qr_code_menu" name="QR"
+                  parent="main_test_module_menu"/>
+
+        <menuitem id="testing_menu" name="Testing" parent="qr_code_menu"
+                  action="test_module_action"/>
+
+    </data>
+</openerp>
